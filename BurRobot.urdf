@@ -1,0 +1,106 @@
+<?xml version="1.0" ?>
+<robot name="BurRobot">
+  <link name="world"/>
+  <joint name="world_to_base" type="fixed">
+    <origin rpy="0 0 0" xyz="0 0 0.09200"/>
+    <parent link="world"/>
+    <child link="base_link"/>
+  </joint>
+
+  <link name="base_link">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry><mesh filename="meshes/base_link.stl" scale="0.001 0.001 0.001"/></geometry>
+    </visual>
+  </link>
+
+  <link name="left_leg_1">
+    <visual>
+      <origin rpy="0 0 0" xyz="-0.026 -0.00066 0.038"/>
+      <geometry><mesh filename="meshes/left_leg_1.stl" scale="0.001 0.001 0.001"/></geometry>
+    </visual>
+  </link>
+
+  <link name="right_leg_1">
+    <visual>
+      <origin rpy="0 0 0" xyz="0.026 -0.00066 0.038"/>
+      <geometry><mesh filename="meshes/right_leg_1.stl" scale="0.001 0.001 0.001"/></geometry>
+    </visual>
+  </link>
+
+  <link name="left_Foot_1">
+    <visual>
+      <origin rpy="0 0 0" xyz="-0.026 -0.00066 0.075"/>
+      <geometry><mesh filename="meshes/left_Foot_1_flat.stl" scale="0.001 0.001 0.001"/></geometry>
+    </visual>
+  </link>
+
+  <link name="right_Foot_1">
+    <visual>
+      <origin rpy="0 0 0" xyz="0.026 -0.00066 0.075"/>
+      <geometry><mesh filename="meshes/right_Foot_1.stl" scale="0.001 0.001 0.001"/></geometry>
+    </visual>
+  </link>
+
+  <link name="left_arm_1">
+    <visual>
+      <origin rpy="0 0 0" xyz="0.038 -0.00475 -0.008"/>
+      <geometry><mesh filename="meshes/left_arm_1.stl" scale="0.001 0.001 0.001"/></geometry>
+    </visual>
+  </link>
+
+  <link name="right_arm_1">
+    <visual>
+      <origin rpy="0 0 0" xyz="-0.038 -0.00475 -0.008"/>
+      <geometry><mesh filename="meshes/right_arm_1.stl" scale="0.001 0.001 0.001"/></geometry>
+    </visual>
+  </link>
+
+  <joint name="left_leg_servo_joint" type="revolute">
+    <origin rpy="0 0 0" xyz="0.026 0.00066 -0.038"/>
+    <parent link="base_link"/>
+    <child link="left_leg_1"/>
+    <axis xyz="0 0 -1"/>
+    <limit lower="-1.5708" upper="1.5708" effort="5.0" velocity="10.0"/>
+  </joint>
+
+  <joint name="bodyServo_leg_servo_joint" type="revolute">
+    <origin rpy="0 0 0" xyz="-0.026 0.00066 -0.038"/>
+    <parent link="base_link"/>
+    <child link="right_leg_1"/>
+    <axis xyz="0 0 -1"/>
+    <limit lower="-1.5708" upper="1.5708" effort="5.0" velocity="10.0"/>
+  </joint>
+
+  <joint name="leg_foot_servo_joint" type="revolute">
+    <origin rpy="0 0 0" xyz="0 0 -0.037"/>
+    <parent link="left_leg_1"/>
+    <child link="left_Foot_1"/>
+    <axis xyz="0 1 0"/>
+    <limit lower="-1.5708" upper="1.5708" effort="5.0" velocity="10.0"/>
+  </joint>
+
+  <joint name="righ_foot_servo_joint" type="revolute">
+    <origin rpy="0 0 0" xyz="0 0 -0.037"/>
+    <parent link="right_leg_1"/>
+    <child link="right_Foot_1"/>
+    <axis xyz="0 1 0"/>
+    <limit lower="-1.5708" upper="1.5708" effort="5.0" velocity="10.0"/>
+  </joint>
+
+  <joint name="right_arm_servo_joint" type="revolute">
+    <origin rpy="0 0 0" xyz="-0.038 0.00475 0.008"/>
+    <parent link="base_link"/>
+    <child link="left_arm_1"/>
+    <axis xyz="-1 0 0"/>
+    <limit lower="-1.5708" upper="1.5708" effort="5.0" velocity="10.0"/>
+  </joint>
+
+  <joint name="left_arm-servo_joint" type="revolute">
+    <origin rpy="0 0 0" xyz="0.038 0.00475 0.008"/>
+    <parent link="base_link"/>
+    <child link="right_arm_1"/>
+    <axis xyz="1 0 0"/>
+    <limit lower="-1.5708" upper="1.5708" effort="5.0" velocity="10.0"/>
+  </joint>
+</robot>
